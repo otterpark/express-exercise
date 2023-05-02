@@ -1,10 +1,16 @@
-import express from 'express';
+import express, {type Request, type Response} from 'express';
+import api from './api';
 
 const port = 3000;
 
 const app = express();
 
-app.get('/', (req, res) => {
+// Request Body를 express에서 json으로 받아온다.
+app.use(express.json());
+
+app.use('/api', api);
+
+app.get('/', (req: Request, res: Response) => {
 	res.send('Hello, world!');
 });
 
